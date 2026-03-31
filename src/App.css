@@ -17,3 +17,9 @@ html, body, #root {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+body, html {
+  background-color: #ffffff !important; /* Fuerza el fondo a blanco */
+  margin: 0;
+  padding: 0;
+  color: #212529; /* Color de texto oscuro para que se lea bien */
+}
