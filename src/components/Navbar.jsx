@@ -4,13 +4,13 @@ function Navbar() {
   return (
     // 'p-0' quita el relleno interno del fondo verde
     // 'shadow-sm' opcional para que se vea profesional
-    <nav className="navbar navbar-expand-lg navbar-dark bg-success p-0 shadow-sm">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-success p-1">
       
       {/* 'container-fluid' con 'p-0' asegura que el contenido toque los bordes */}
-      <div className="container-fluid p-0">
+      <div className="container-fluid">
 
         {/* Logo con un pequeño margen a la izquierda para que no toque la pantalla físicamente */}
-        <div className="ps-3 py-2">
+        <div className="ps-2 py-2">
           <img 
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sena_Colombia_logo.svg/3840px-Sena_Colombia_logo.svg.png"
             alt="Logo"
