@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Noticias = () => {
+const Sede = () => {
   return (
     <div>
       <h4 className="text-warning fw-bold">Nuestras Sedes</h4>
@@ -13,4 +13,4 @@ const Noticias = () => {
   );
 };
 
-export default Noticias;
+export default Sede;
