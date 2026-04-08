@@ -1,19 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
+function Register() {
+  const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
-    // Simulación (luego backend)
-    if (email === "admin@sena.edu.co" && password === "1234") {
-      alert("Login exitoso ✅");
-    } else {
-      alert("Credenciales incorrectas ❌");
-    }
+    console.log({ nombre, email, password });
+    alert("Usuario registrado correctamente ✅");
   };
 
   return (
@@ -28,11 +25,22 @@ function Login() {
             alt="SENA"
             style={{ width: "80px" }}
           />
-          <h4 className="mt-2">RIV-IA</h4>
+          <h4 className="mt-2">Registro RIV-IA</h4>
         </div>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
           
+          <div className="mb-3">
+            <label>Nombre</label>
+            <input 
+              type="text"
+              className="form-control"
+              placeholder="Tu nombre"
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+          </div>
+
           <div className="mb-3">
             <label>Correo</label>
             <input 
@@ -56,14 +64,14 @@ function Login() {
           </div>
 
           <button className="btn btn-success w-100">
-            Ingresar
+            Registrarse
           </button>
 
         </form>
 
-        {/* Link a registro */}
+        {/* Volver al login */}
         <p className="mt-3 text-center">
-          ¿No tienes cuenta? <Link to="/register">Regístrate</Link>
+          ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
         </p>
 
       </div>
@@ -71,4 +79,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
