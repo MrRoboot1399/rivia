@@ -1,5 +1,6 @@
 import React from 'react';
-import fotoAvatar from '../assets/AvatarRivia.png'; 
+import fotoAvatar from '../assets/AvatarRivia.png';
+import bannerCTPI from '../assets/ctpi-banner.png';
 
 import Calendario from './Calendario';
 import CursoOfertados from './CursoOfertados';
@@ -7,172 +8,149 @@ import Sede from './Sede';
 
 const Asistente = () => {
   const [seccionActiva, setSeccionActiva] = React.useState('');
-
   const mostrarInicio = seccionActiva === '';
 
   return (
-    <div 
-      className="container-fluid vh-100 d-flex flex-column p-0"
-      style={{ background: 'linear-gradient(135deg, #eef2f7, #e3e8ee)' }}
-    >
+    <div className="d-flex flex-column" style={{ minHeight: '100vh', background: '#eef2f7' }}>
 
-      <div className="d-flex flex-grow-1">
+      {/* ================= HERO FULL WIDTH ================= */}
+      {mostrarInicio && (
+        <div style={{ width: '100%' }}>
 
-        {/* SIDEBAR */}
-        {mostrarInicio && (
-          <div 
-            className="p-4 border-end d-flex flex-column justify-content-between"
-            style={{ width: '280px', background: '#ffffffcc', backdropFilter: 'blur(10px)' }}
-          >
+          <img
+            src={bannerCTPI}
+            alt="CTPI banner"
+            style={{
+              width: '100%',
+              height: '200px',
+              objectFit: 'cover'
+            }}
+          />
 
-            <div>
-              <h6 className="fw-bold mb-4">Accesos rápidos</h6>
+        </div>
+      )}
 
-              <div className="d-flex flex-column gap-3">
+      {/* ================= BODY ================= */}
+      <div className="container-fluid flex-grow-1 py-4">
 
-                <div 
-                  className="p-3 rounded-4 shadow-sm border bg-success bg-opacity-10"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => setSeccionActiva('cursos')}
-                >
-                  <div className="fs-3">📚</div>
-                  <h6 className="fw-bold mt-2">Cursos Ofertados</h6>
-                  <small className="text-muted">CTPI Cauca</small>
-                </div>
+        <div className="row g-3">
 
-                <div 
-                  className="p-3 rounded-4 shadow-sm border bg-primary bg-opacity-10"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => setSeccionActiva('calendario')}
-                >
-                  <div className="fs-3">📅</div>
-                  <h6 className="fw-bold mt-2">Calendario</h6>
-                  <small className="text-muted">Fechas 2026</small>
-                </div>
+          {/* ================= LEFT ================= */}
+          {mostrarInicio && (
+            <div className="col-12 col-lg-3">
 
-                <div 
-                  className="p-3 rounded-4 shadow-sm border bg-warning bg-opacity-10"
-                  style={{ cursor: 'pointer' }}
-                  onClick={() => setSeccionActiva('sede')}
-                >
-                  <div className="fs-3">📍</div>
-                  <h6 className="fw-bold mt-2">Nuestra Sede</h6>
-                  <small className="text-muted">Ubicación</small>
-                </div>
+              <div className="bg-white rounded-4 shadow-sm p-4 h-100 text-center">
 
-              </div>
-            </div>
-
-            <div>
-              <div className="alert bg-white border-start border-info border-4 rounded-4 shadow-sm p-3 mb-0">
-                <small className="fw-bold d-block">💡 Convocatoria abierta</small>
-                <small className="text-muted">Apoyos 2026 disponibles</small>
-              </div>
-            </div>
-
-          </div>
-        )}
-
-        {/* MAIN */}
-        <div className="flex-grow-1 d-flex flex-column">
-
-          <div className={`d-flex flex-grow-1 p-3 ${mostrarInicio ? 'gap-2' : ''}`}>
-
-            {/* AVATAR */}
-            {mostrarInicio && (
-              <div 
-                className="d-flex flex-column align-items-center text-center"
-                style={{ width: '280px' }}
-              >
-
-                <img 
+                <img
                   src={fotoAvatar}
-                  alt="Avatar de Rivia"
-                  style={{ 
-                    maxWidth: '560px',
-                    maxHeight: '520px',
-                    objectFit: 'contain',
+                  alt="avatar"
+                  style={{
+                    width: '170px',
+                    borderRadius: '20px'
                   }}
                 />
 
-                <small 
-                  className="text-success fw-semibold"
-                  style={{ marginTop: '-65px' }}
-                >
-                  ● En línea
-                </small>
+                <div className="text-success fw-semibold mt-3">
+                  ● Rivia en línea
+                </div>
 
               </div>
-            )}
+            </div>
+          )}
 
-            {/* CONTENIDO */}
-            <div className="flex-grow-1 bg-white rounded-4 shadow-lg d-flex flex-column">
+          {/* ================= CENTER ================= */}
+          <div className={mostrarInicio ? "col-12 col-lg-6" : "col-12"}>
 
-              {/* BOTÓN VOLVER (SIN CONTENEDOR EXTRA) */}
+            {/* PANEL */}
+            <div className="bg-white rounded-4 shadow-lg p-4" style={{ minHeight: '450px' }}>
+
               {!mostrarInicio && (
-                <button 
-                  className="btn btn-light border rounded-pill px-3 btn-sm m-3 align-self-start"
+                <button
+                  className="btn btn-light btn-sm rounded-pill mb-3"
                   onClick={() => setSeccionActiva('')}
                 >
                   ← Volver
                 </button>
               )}
 
-              <div className="flex-grow-1 p-4 h-100" style={{ overflowY: 'auto' }}>
-
-                {mostrarInicio && (
-                  <div className="text-center text-muted mt-5">
-                    <p>Hola 👋 Soy Rivia</p>
-                    <p>Pregúntame lo que necesites</p>
-                  </div>
-                )}
-
-                {seccionActiva === 'cursos' && <CursoOfertados />}
-                {seccionActiva === 'calendario' && <Calendario />}
-                {seccionActiva === 'sede' && <Sede />}
-
-              </div>
-
-              {/* INPUT SOLO EN INICIO */}
               {mostrarInicio && (
-                <div className="p-3 border-top bg-white">
-
-                  <div 
-                    className="d-flex align-items-center px-3 py-2 mx-auto"
-                    style={{
-                      maxWidth: '800px',
-                      background: '#8888d8',
-                      borderRadius: '30px',
-                    }}
-                  >
-
-                    <input 
-                      type="text"
-                      className="form-control border-0 bg-transparent"
-                      placeholder="Escribe tu mensaje..."
-                    />
-
-                    <button 
-                      className="btn btn-success rounded-circle ms-1 px-1"
-                      style={{ width: '40px', height: '40px' }}
-                    >
-                      ➤
-                    </button>
-
-                  </div>
-
+                <div className="text-center text-muted mt-5">
+                  <h5>Hola 👋 soy Rivia</h5>
+                  <p>Selecciona una opción o escribe tu consulta</p>
                 </div>
               )}
 
+              {seccionActiva === 'cursos' && <CursoOfertados />}
+              {seccionActiva === 'calendario' && <Calendario />}
+              {seccionActiva === 'sede' && <Sede />}
+
             </div>
+
+            {/* CHAT */}
+            {mostrarInicio && (
+              <div className="mt-3 bg-white p-2 rounded-pill shadow-sm d-flex align-items-center">
+
+                <input
+                  className="form-control border-0"
+                  placeholder="Escribe tu mensaje..."
+                />
+
+                <button className="btn btn-success rounded-circle ms-2">
+                  <i className="bi bi-send-fill"></i>
+                </button>
+
+              </div>
+            )}
 
           </div>
 
-        </div>
+          {/* ================= RIGHT ================= */}
+          {mostrarInicio && (
+            <div className="col-12 col-lg-3">
 
+              <div className="d-flex flex-column gap-3">
+
+                <div
+                  className="bg-white rounded-4 shadow-sm p-3 text-center"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setSeccionActiva('cursos')}
+                >
+                  <i className="bi bi-journal-bookmark-fill fs-3 text-success"></i>
+                  <div className="fw-bold mt-2">Cursos</div>
+                </div>
+
+                <div
+                  className="bg-white rounded-4 shadow-sm p-3 text-center"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setSeccionActiva('calendario')}
+                >
+                  <i className="bi bi-calendar-event-fill fs-3 text-primary"></i>
+                  <div className="fw-bold mt-2">Calendario</div>
+                </div>
+
+                <div
+                  className="bg-white rounded-4 shadow-sm p-3 text-center"
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => setSeccionActiva('sede')}
+                >
+                  <i className="bi bi-geo-alt-fill fs-3 text-warning"></i>
+                  <div className="fw-bold mt-2">Sede</div>
+                </div>
+
+                <div className="bg-white rounded-4 shadow-sm p-3 text-center">
+                  <i className="bi bi-headset fs-3 text-dark"></i>
+                  <div className="fw-bold mt-2">Soporte</div>
+                </div>
+
+              </div>
+
+            </div>
+          )}
+
+        </div>
       </div>
 
-      {/* FOOTER */}
+      {/* FOOTER (NO TOCAR) */}
       <footer className="bg-success text-white text-center py-3 px-2" style={{ fontSize: '14px' }}>
         <p className="mb-1"><strong>Servicio Nacional de Aprendizaje SENA | CENTRO DE TELEINFORMÁTICA Y PRODUCCIÓN INDUSTRIAL | Regional Cauca</strong></p>
         <p className="mb-1"><strong>Dirección:</strong> Carrera 9 # 71 N 60 Barrio el Placer- Alto Cauca, Popayán</p>
